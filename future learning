@@ -3,6 +3,7 @@ gulp构建工具
 sass
 react
 sass should be the first
+Installs n, the Node.js version manager
 }
 gulp{
 src https://markgoodyear.com/2014/01/getting-started-with-gulp/
@@ -11,6 +12,10 @@ sublime{
 折叠shortcut command＋opt＋［
 取消折叠shortcut command＋opt＋］
 src https://www.youtube.com/watch?v=80UUPMUAP-g
+增加／减少数字
+每次1 ctrl＋方向键
+每次0.1 option＋方向键
+每次10 command＋option＋方向键
 }
 iterm{
 I am used to command + k to clear up the terminal in mac. It is very helpful specially while debugging through server logs.
