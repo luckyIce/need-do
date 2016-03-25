@@ -2,10 +2,15 @@ gulp构建工具
 sass
 react
 sass should be the first
-gulp教程
+gulp{
+教程
 https://markgoodyear.com/2014/01/getting-started-with-gulp/
 sublime{
 折叠shortcut command＋opt＋［
 取消折叠shortcut command＋opt＋］
 src https://www.youtube.com/watch?v=80UUPMUAP-g
 }
+iterm{
+I am used to command + k to clear up the terminal in mac. It is very helpful specially while debugging through server logs.
+}
+
