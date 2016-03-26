@@ -7,6 +7,10 @@ Installs n, the Node.js version manager
 compass
 gem install compass 出问题
 }
+学习资料｛
+src https://css-tricks.com
+在实现两栏布局时，如果用float则可以做到布局对内容自适应，而用position：absolute则不能。
+｝
 gulp{
 src https://markgoodyear.com/2014/01/getting-started-with-gulp/
 }
