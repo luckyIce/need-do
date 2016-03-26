@@ -31,9 +31,12 @@ cmake{
   cmake -D BUILD_EXAMPLES=ON ..... !important
   -G <generator-name>          = Specify a build system generator.
   This module no longer exists.
- FindVTK{
-               This module existed in versions of CMake prior to 3.1, but became only a thin wrapper around find_package(VTK NO_MODULE) to provide compatibility for projects using long-outdated conventions. Now find_package(VTK) will search for VTKConfig.cmake directly.
-        }
 }
+FindVTK{
+This module existed in versions of CMake prior to 3.1, but became only a thin wrapper around find_package(VTK NO_MODULE) to provide compatibility for projects using long-outdated conventions. Now find_package(VTK) will search for VTKConfig.cmake directly.
+}
+vtk{
+可以在main函数最后加上cin>>i 来让程序不立即结束
+｝
 
 
