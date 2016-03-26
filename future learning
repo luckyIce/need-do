@@ -22,5 +22,14 @@ src https://www.youtube.com/watch?v=80UUPMUAP-g
 iterm{
 I am used to command + k to clear up the terminal in mac. It is very helpful specially while debugging through server logs.
 }
+rvm{
 RVM is a command-line tool which allows you to easily install, manage, and work with multiple ruby environments from interpreters to sets of gems.
+}
+cmake{
+ -D <var>[:<type>]=<value>    = Create a cmake cache entry.
+ eg cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local ..
+  cmake -D BUILD_EXAMPLES=ON ..... !important
+  -G <generator-name>          = Specify a build system generator.
+}
+
 
