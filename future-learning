@@ -44,5 +44,8 @@ This module existed in versions of CMake prior to 3.1, but became only a thin wr
 vtk{
 可以在main函数最后加上cin>>i 来让程序不立即结束
 ｝
+future-learn{
+ 学习snipmate加速CMakeLists.txt的书写
+}
 
 
