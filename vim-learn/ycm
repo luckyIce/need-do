@@ -1,0 +1,4 @@
+Compiling YCM with semantic support for C-family languages:
+
+cd ~/.vim/bundle/YouCompleteMe
+./install.py --clang-completer
