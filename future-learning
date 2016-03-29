@@ -47,5 +47,8 @@ vtk{
 future-learn{
  学习snipmate加速CMakeLists.txt的书写
 }
+sublime{
+在安装了hayaku后，用ctrl＋e可以使用emmet的补全
+用途 输入m0-auto使用tab不能补全使用ctrl＋e可以补全
 
 
