@@ -1,0 +1,3 @@
+<tab>	expand trigger
+<C-j>	advance to next tabstop
+<C-k>	reverse to previous tabstop
