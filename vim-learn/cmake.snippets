@@ -1,0 +1,20 @@
+snippet include "include" b
+include(${2:${${1:VTK_USE_FILE}}})
+${0}
+endsnippet
+snippet cmake  "cmake_minimum_required" b
+cmake_minimum_required(VERISON 2.8)
+${0}
+endsnippet
+snippet find "Description" b
+find_package(${1:VTK})
+${0}
+endsnippet
+snippet add "Description" b
+add_executable(main ${1})
+${0}
+endsnippet
+snippet target "Description" b
+target_link_libraries(main ${2:${${1:VTK_LIBRARIES}}})
+${0}
+endsnippet
