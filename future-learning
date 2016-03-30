@@ -50,5 +50,7 @@ future-learn{
 sublime{
 在安装了hayaku后，用ctrl＋e可以使用emmet的补全
 用途 输入m0-auto使用tab不能补全使用ctrl＋e可以补全
+zm fold more
+zr reduce fold
 
 
