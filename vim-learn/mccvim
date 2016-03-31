@@ -1,0 +1,10 @@
+If you don't use the MacVim GUI, it is recommended to use the Vim binary that is inside the MacVim.app package (MacVim.app/Contents/MacOS/Vim). To ensure it works correctly copy the mvim script from the MacVim download to your local binary folder (for example /usr/local/bin/mvim) and then symlink it:
+
+ln -s /usr/local/bin/mvim vim
+src:https://github.com/Valloric/YouCompleteMe#mac-os-x
+具体操作
+  下载macvim
+  将其移动到application
+  在命令行cd /usr/local/bin
+  ln -s /usr/local/bin/mvim vim
+  在.zshrc中alias vi=/usr/local/bin/vim
