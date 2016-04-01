@@ -1,3 +1,9 @@
 <tab>	expand trigger
 <C-j>	advance to next tabstop
 <C-k>	reverse to previous tabstop
+The start line takes the following form: 
+   snippet tab_trigger [ "description" [ options ] ]
+   options:
+      i －inword
+      snippets.snippets中vis的定义中使用
+
