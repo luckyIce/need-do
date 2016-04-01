@@ -56,3 +56,6 @@ updatedb mac｛
  The locate.updatedb utility updates the database used by locate(1).  It is typically run once a week by
      the /System/Library/LaunchDaemons/com.apple.locate.plist job.
 ｝
+item{
+src:http://foocoder.com/blog/wo-zai-yong-de-macruan-jian.html/
+}
