@@ -1,3 +1,17 @@
 <tab>	expand trigger
 <C-j>	advance to next tabstop
 <C-k>	reverse to previous tabstop
+The start line takes the following form: 
+   snippet tab_trigger [ "description" [ options ] ]
+   options:
+      i －inword
+      snippets.snippets中vis的定义中使用
+snippet span 
+<span>${VISUAL}</span>
+endsnippet
+python interpolation
+Python code using the '!p' indicator differs in another way. Generally when a snippet is
+expanded the standard output of code replaces the code. With python code the
+value of the 'rv' property of the 'snip' instance replaces the code.
+
+
