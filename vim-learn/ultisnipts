@@ -6,4 +6,8 @@ The start line takes the following form:
    options:
       i －inword
       snippets.snippets中vis的定义中使用
+snippet span 
+<span>${VISUAL}</span>
+endsnippet
+
 
