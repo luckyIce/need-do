@@ -1,0 +1,3 @@
+使用dir（）和help()
+dir(sys)
+help(sys.argv)

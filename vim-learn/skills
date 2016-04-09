@@ -1,2 +1,2 @@
 g 配合command使用
-:g/re/command 
+:g/re/normal
