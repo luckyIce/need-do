@@ -62,3 +62,6 @@ src:http://foocoder.com/blog/wo-zai-yong-de-macruan-jian.html/
 python正则表达式{
 src:http://www.imooc.com/learn/550
 }
+opencv{
+/usr/local/Cellar/opencv/2.4.12_2/share/OpenCV/OpenCVConfig.cmake
+}
