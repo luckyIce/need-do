@@ -23,4 +23,8 @@ Restart the taskagted service, and sign the binary.
 $ sudo killall taskgated
 $ codesign -fs gdb-cert /usr/local/bin/gdb
 src：http://andresabino.com/2015/04/14/codesign-gdb-on-mac-os-x-yosemite-10-10-2/
+},
+{
+introduction to GDB a tutorial - Harvard CS50
+src:https://www.youtube.com/watch?v=sCtY--xRUyI
 }
