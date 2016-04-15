@@ -1,0 +1,1918 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" id="sixapart-standard">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="generator" content="Movable Type  5.2.2" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="http://www.ruanyifeng.com/blog/styles.css" type="text/css" />
+<link rel="start" href="http://www.ruanyifeng.com/blog/" title="Home" />
+<link rel="alternate" type="application/atom+xml" title="Recent Entries" href="http://feeds.feedburner.com/ruanyifeng" />
+<script type="text/javascript" src="http://www.ruanyifeng.com/blog/mt.js"></script>
+<!--
+<rdf:RDF xmlns="http://web.resource.org/cc/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/"
+         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<Work rdf:about="http://www.ruanyifeng.com/blog/2007/01/2007_web_20_companies_i_couldnt_live_without.html">
+<dc:title>生活中必不可少的15个Web2.0网站</dc:title>
+<dc:description>TechCrunch的编辑列出了一张清单，上面是2007年生活中必不可少的15个web2.0网站。我建议大家每一个都打开看一下，它们很大程度上代表了未来10年中人类生活的发展方向。...</dc:description>
+<dc:creator>阮一峰</dc:creator>
+<dc:date>2007-01-03T16:13:15+08:00</dc:date>
+<license rdf:resource="http://creativecommons.org/licenses/by-nc-nd/3.0/" />
+</Work>
+<License rdf:about="http://creativecommons.org/licenses/by-nc-nd/3.0/">
+</License>
+</rdf:RDF>
+-->
+
+
+    
+    <link rel="prev" href="http://www.ruanyifeng.com/blog/2011/09/birth_of_sisi.html" title="思思诞生记（转载）" />
+    <link rel="next" href="http://www.ruanyifeng.com/blog/2011/09/michael_s_hart_passed_away.html" title="Michael S. Hart去世了" />
+    
+    <title>curl网站开发指南 - 阮一峰的网络日志</title>
+</head>
+<body id="scrapbook" class="mt-entry-archive one-column">
+<script>
+if (/mobile/i.test(navigator.userAgent) || /android/i.test(navigator.userAgent)) document.body.classList.add('mobile');
+</script>
+    <div id="container">
+        <div id="container-inner">
+
+            <div id="header">
+    <div id="header-inner">
+        <div id="header-content">
+
+
+            <div id="header-name">阮一峰的网络日志 <span id="site_location"> » <a href="http://www.ruanyifeng.com/blog/" accesskey="1">首页</a></span><span id="site_archive"> » <a href="http://www.ruanyifeng.com/blog/archives.html">档案</a></span>
+</div>
+
+<div id="google_search">
+<!-- SiteSearch Google -->
+<form action="http://www.ruanyifeng.com/blog/search.html" id="cse-search-box">
+      <div>
+        <input type="hidden" name="cx" value="016304377626642577906:b_e9skaywzq" />
+    <input type="hidden" name="cof" value="FORID:11" />
+    <input type="hidden" name="ie" value="UTF-8" />
+        <input type="text" name="q" size="20" class="searchbox" id="sbi" value=""/>
+        <input type="image" src="/static/themes/theme_scrapbook/images/top_search_submit.gif" class="searchbox_submit" value="" alt="搜索" name="sa"/>
+      </div>
+    </form>
+<!-- SiteSearch Google -->
+</div>
+<div id="feed_icon">
+<a href="/feed.html" title="订阅Feed">
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAUzSURBVHjavFdbbFRVFF3nPjoz7dTWTittaW0jUDRAUqaNojyqREnEQKgfUj9MqqAmhqRt/OCD4CuY+Kckoh+aiGKC+gMJbdHoRysJ8dkhhmJLNdDKtJU+6GMK87j3Hs85d2Z6HzNtMYWb3Dn3NWftvfba+5xNYDl+e6Fkj6yqb/oDRbWq14vlPBLRKCITkxf0ROLt+hNjp1PPSRK4kA3vF1dXNRcWlyA2OQU9eos9opAkAiKxD+XkKO6t15aRWO7J/MgmAZU8MEgexgZHMX518Dh72sYMmVKShnxWuWHdHtxKIDIYTgMuDzgfmSOIQkYMpdUF8OY92Hytt4/jvkg47czzU16iQovM3QFwmNck+Yyduu7D6NA0Z6JR4THntFs9V4tWQg6Ui3s6MwKDncsFTnXKLJhDSeUK3AgPtyhccDzmVs999buRt/1Vm4i0od+hX7+MRG87jPGB/w1u8FPj9xEw7McVrnYuOCvtpjTth3J/nTg99c8LRhKhr6D3dTB5R24bXFwbMXBsyZzeoXaycEpJ95TB09AGX/NpqLVNtw8urnVzLvHjFNxiFqRy2OOHuqUVnue+ACkoWzo4O6lGzTmuHq6nPvY2m9rVqjrIK2rMEKxqyG5NPAKt+wjo0LklgfNxJkZMA3KJvqRUk3z5UFY3QH14P0h+WUY79HPvgv7VuSg4ZRGY1YgZgqXmORccF17sy2ehnf9AeO085K2HQFbtXBScj0LcpgF2cN+WV+DZ/LJQu6gD4R7oV7pBJwbSgtMvfiPoVp56DySwxm7EtkMs1WdAB7qzggsDJKQYsHucSkOudrkiCPWR/fA2nYCn8SNIK4NptSMyAu3sAdDRkIsJdfth0LzSrODUoPNZ4KI9SxJI5UHk7D4GdQfz2us31c7CoHMjRkKuDPHseCMrONVhNcDJwMJpKFVvg9L4OaTiNWm1x789KCqkrXhVBiEz0WYCT2nAzQAD1/vaETv1GrRfP4Vx5cfMNcDPwvP0h0DhanPym7OIf/+O67vcJ1/PCJ4KgdzaUP6Wz+dU+5yIL6fV+PsHGAOdwlPpvvUOyeeAVGyCdqkDNB6DPjsBSrnndfOGevOh3RhGItxvA+fX1CtbGFhgYUFkFMZPR6F1HnClHq8HyubWtJexX06CRmdt33hrd7nA7SFY4qoGpnYuOKcRykPPgDCBcsHx9Iv+fNL2PueBehCWUfYQIIMGLOCcOmXDXsh1+yCt35tUPfvzGFuSvzvoinXOxqa02qOhM6733nVP2MAdaej2XN11DPKjLZCD+yBvahGCo7JfTKAN9UD7s8Oe9zUNIhz8fWI8DG2k38WCFdxugANcXrvTVd1IEbuv3Jour7Hzn7jLMBNfKs7R3i67gRVrbeCOEDhinmWhAatsqdquM2XzHZINhK2cqTjHr/XZdVJUbgN3MWAVXKbSyg9jesRW2xP9di+lwrL5ojM3m2H/kG9hwcIA37c71W6wJdW2J2S5nrjYbq/t1AHAhJsKQeyfPvf6IMJgghPJhFZ4x0KlfLFvt22du45Au/A1SOlGc0P672XXwhLtOcM0kTTEMMd0qkVmMNXxMd/tsedUjInr4SQDgOfeXMSiN0FCL5WHah4L1qqYXPJOJlttd+a5M+YpcG5poLYKQ5f+6JJ4r8bbJYP47hq4r7QAs9PjYNhHJd4o8l5taiwuOpa7AS4XKqI/5NjJbTnaWK92nLdLuhQAJayRNMiygXPBeQN+Qbvu0zDc3y+aUzhbkGR73sI7ljvUnndx2q3t+X8CDAD66FtrIL864AAAAABJRU5ErkJggg==" alt="" style="border: 0pt none;" />
+</a></div>
+
+        </div>
+    </div>
+</div>
+
+
+
+            <div id="content">
+                <div id="content-inner">
+
+
+                    <div id="alpha">
+                        <div id="alpha-inner">
+
+
+                            <div id="entry-1673" class="entry-asset asset hentry">
+                                <div class="asset-header">
+<div class="asset-nav entry-nav">
+
+<div class="entry-location">
+<ul>
+<li>上一篇：<a href="http://www.ruanyifeng.com/blog/2011/09/birth_of_sisi.html" title="思思诞生记（转载）">思思诞生记（转载）&nbsp;&nbsp;</a></li>
+<li>下一篇：<a href="http://www.ruanyifeng.com/blog/2011/09/michael_s_hart_passed_away.html" title="Michael S. Hart去世了">Michael&nbsp;S.&nbsp;</a></li>
+</ul>
+</div>
+
+
+    
+                                    <div class="entry-categories">
+                                        <p>分类<span class="delimiter">：</span></p>
+                                        <ul>
+                                            <li><a href="http://www.ruanyifeng.com/blog/developer/" rel="tag">开发者手册</a></li>
+                                        </ul>
+                                    </div>
+    
+
+
+                                            
+</div>
+                                </div>
+<article class="hentry">
+                                    <h1 id="page-title" class="asset-name entry-title">curl网站开发指南</h1>
+                                            <div id="share_button" style="float:right;padding-right:2em;padding-top:1em;"></div>
+                                    <div class="asset-meta">
+                                        
+
+                                            <p class="vcard author">作者： <a class="fn url" href="http://www.ruanyifeng.com">阮一峰</a></p>
+                                    <p>日期： <a href="http://www.ruanyifeng.com/blog/2011/09/"><abbr class="published" title="2011-09-04T11:20:46+08:00">2011年9月 4日</abbr></a></p>
+
+
+                                    </div>
+                                
+                                <div class="asset-content entry-content" id="main-content">
+
+                                    <!-- div class="asset-body" -->
+                                        <p>我一向以为，<a href="http://curl.haxx.se/">curl</a>只是一个编程用的函数库。</p>
+                                    <!-- /div -->
+
+
+                                    <!-- div id="more" class="asset-more" -->
+                                        <p>最近才发现，这个命令本身，就是一个无比有用的网站开发工具，请看我整理的它的用法。</p>
+
+<p>===================================</p>
+
+<p><strong>curl网站开发指南</strong></p>
+
+<p>阮一峰 整理</p>
+
+<p><img src="http://image.beekka.com/blog/201109/bg2011090401.png" style="border:none;"/></p>
+
+<p><a href="http://curl.haxx.se/">curl</a>是一种命令行工具，作用是发出网络请求，然后得到和提取数据，显示在"标准输出"（stdout）上面。</p>
+
+<p>它支持多种协议，下面举例讲解如何将它用于网站开发。</p>
+
+<p><strong>一、查看网页源码</strong></p>
+
+<p>直接在curl命令后加上网址，就可以看到网页源码。我们以网址www.sina.com为例（选择该网址，主要因为它的网页代码较短）：</p>
+
+<blockquote>
+
+<p>　　$ curl www.sina.com</p>
+
+</blockquote>
+
+<blockquote>
+
+<p>　　&lt;!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"&gt;<br />
+　　&lt;html&gt;&lt;head&gt;<br />
+　　&lt;title&gt;301 Moved Permanently&lt;/title&gt;<br />
+　　&lt;/head&gt;&lt;body&gt;<br />
+　　&lt;h1&gt;Moved Permanently&lt;/h1&gt;<br />
+　　&lt;p&gt;The document has moved &lt;a href="http://www.sina.com.cn/"&gt;here&lt;/a&gt;.&lt;/p&gt;<br />
+　　&lt;/body&gt;&lt;/html&gt;</p>
+
+</blockquote>
+
+<p>如果要把这个网页保存下来，可以使用`-o`参数，这就相当于使用wget命令了。</p>
+
+<blockquote>
+
+<p>　　$ curl -o [文件名] www.sina.com</p>
+
+</blockquote>
+
+<p><strong>二、自动跳转</strong></p>
+
+<p>有的网址是自动跳转的。使用`-L`参数，curl就会跳转到新的网址。</p>
+
+<blockquote>
+
+<p>　　$ curl -L www.sina.com</p>
+
+</blockquote>
+
+<p>键入上面的命令，结果就自动跳转为www.sina.com.cn。</p>
+
+<p><strong>三、显示头信息</strong></p>
+
+<p>`-i`参数可以显示http response的头信息，连同网页代码一起。</p>
+
+<blockquote>
+
+<p>　　$ curl -i www.sina.com</p>
+
+</blockquote>
+
+<blockquote>
+
+<p>　　HTTP/1.0 301 Moved Permanently<br />
+　　Date: Sat, 03 Sep 2011 23:44:10 GMT<br />
+　　Server: Apache/2.0.54 (Unix)<br />
+　　Location: http://www.sina.com.cn/<br />
+　　Cache-Control: max-age=3600<br />
+　　Expires: Sun, 04 Sep 2011 00:44:10 GMT<br />
+　　Vary: Accept-Encoding<br />
+　　Content-Length: 231<br />
+　　Content-Type: text/html; charset=iso-8859-1<br />
+　　Age: 3239<br />
+　　X-Cache: HIT from sh201-9.sina.com.cn<br />
+　　Connection: close</p>
+
+<p>　　&lt;!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"&gt;<br />
+　　&lt;html&gt;&lt;head&gt;<br />
+　　&lt;title&gt;301 Moved Permanently&lt;/title&gt;<br />
+　　&lt;/head&gt;&lt;body&gt;<br />
+　　&lt;h1&gt;Moved Permanently&lt;/h1&gt;<br />
+　　&lt;p&gt;The document has moved &lt;a href="http://www.sina.com.cn/"&gt;here&lt;/a&gt;.&lt;/p&gt;<br />
+　　&lt;/body&gt;&lt;/html&gt;</p>
+
+</blockquote>
+
+<p>`-I`参数则是只显示http response的头信息。</p>
+
+<p><strong>四、显示通信过程</strong></p>
+
+<p>`-v`参数可以显示一次http通信的整个过程，包括端口连接和http request头信息。</p>
+
+<blockquote>
+
+<p>　　$ curl -v www.sina.com</p>
+
+</blockquote>
+
+<blockquote>
+
+<p>　　* About to connect() to www.sina.com port 80 (#0)<br />
+　　*   Trying 61.172.201.195... connected<br />
+　　* Connected to www.sina.com (61.172.201.195) port 80 (#0)<br />
+　　&gt; GET / HTTP/1.1<br />
+　　&gt; User-Agent: curl/7.21.3 (i686-pc-linux-gnu) libcurl/7.21.3 OpenSSL/0.9.8o zlib/1.2.3.4 libidn/1.18<br />
+　　&gt; Host: www.sina.com<br />
+　　&gt; Accept: */*<br />
+　　&gt; <br />
+　　* HTTP 1.0, assume close after body<br />
+　　&lt; HTTP/1.0 301 Moved Permanently<br />
+　　&lt; Date: Sun, 04 Sep 2011 00:42:39 GMT<br />
+　　&lt; Server: Apache/2.0.54 (Unix)<br />
+　　&lt; Location: http://www.sina.com.cn/<br />
+　　&lt; Cache-Control: max-age=3600<br />
+　　&lt; Expires: Sun, 04 Sep 2011 01:42:39 GMT<br />
+　　&lt; Vary: Accept-Encoding<br />
+　　&lt; Content-Length: 231<br />
+　　&lt; Content-Type: text/html; charset=iso-8859-1<br />
+　　&lt; X-Cache: MISS from sh201-19.sina.com.cn<br />
+　　&lt; Connection: close<br />
+　　&lt; <br />
+　　&lt;!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"&gt;<br />
+　　&lt;html&gt;&lt;head&gt;<br />
+　　&lt;title&gt;301 Moved Permanently&lt;/title&gt;<br />
+　　&lt;/head&gt;&lt;body&gt;<br />
+　　&lt;h1&gt;Moved Permanently&lt;/h1&gt;<br />
+　　&lt;p&gt;The document has moved &lt;a href="http://www.sina.com.cn/"&gt;here&lt;/a&gt;.&lt;/p&gt;<br />
+　　&lt;/body&gt;&lt;/html&gt;<br />
+　　* Closing connection #0</p>
+
+</blockquote>
+
+<p>如果你觉得上面的信息还不够，那么下面的命令可以查看更详细的通信过程。</p>
+
+<blockquote>
+
+<p>　　$ curl --trace output.txt www.sina.com</p>
+
+</blockquote>
+
+<p>或者</p>
+
+<blockquote>
+
+<p>　　$ curl --trace-ascii output.txt www.sina.com</p>
+
+</blockquote>
+
+<p>运行后，请打开output.txt文件查看。</p>
+
+<p><strong>五、发送表单信息</strong></p>
+
+<p>发送表单信息有GET和POST两种方法。GET方法相对简单，只要把数据附在网址后面就行。</p>
+
+<blockquote>
+
+<p>　　$ curl example.com/form.cgi?data=xxx</p>
+
+</blockquote>
+
+<p>POST方法必须把数据和网址分开，curl就要用到--data参数。</p>
+
+<blockquote>
+
+<p>　　$ curl -X POST --data "data=xxx" example.com/form.cgi</p>
+
+</blockquote>
+
+<p>如果你的数据没有经过表单编码，还可以让curl为你编码，参数是`--data-urlencode`。</p>
+
+<blockquote>
+
+<p>　　$ curl -X POST--data-urlencode "date=April 1" example.com/form.cgi</p>
+
+</blockquote>
+
+<p><strong>六、HTTP动词</strong></p>
+
+<p>curl默认的HTTP动词是GET，使用`-X`参数可以支持其他动词。</p>
+
+<blockquote>
+
+<p>　　$ curl -X POST www.example.com</p>
+
+</blockquote>
+
+<blockquote>
+
+<p>　　$ curl -X DELETE www.example.com</p>
+
+</blockquote>
+
+<p><strong>七、文件上传</strong></p>
+
+<p>假定文件上传的表单是下面这样：</p>
+
+<blockquote>
+
+<p>　　&lt;form method="POST" enctype='multipart/form-data' action="upload.cgi"&gt;<br />
+　　　　&lt;input type=file name=upload&gt;<br />
+　　　　&lt;input type=submit name=press value="OK"&gt;<br />
+　　&lt;/form&gt;</p>
+
+</blockquote>
+
+<p>你可以用curl这样上传文件：</p>
+
+<blockquote>
+
+<p>　　$ curl --form upload=@localfilename --form press=OK [URL]</p>
+
+</blockquote>
+
+<p><strong>八、Referer字段</strong></p>
+
+<p>有时你需要在http request头信息中，提供一个referer字段，表示你是从哪里跳转过来的。</p>
+
+<blockquote>
+
+<p>　　$ curl --referer http://www.example.com http://www.example.com</p>
+
+</blockquote>
+
+<p><strong>九、User Agent字段</strong></p>
+
+<p>这个字段是用来表示客户端的设备信息。服务器有时会根据这个字段，针对不同设备，返回不同格式的网页，比如手机版和桌面版。</p>
+
+<p>iPhone4的User Agent是</p>
+
+<blockquote>
+
+<p>　　Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_0 like Mac OS X; en-us) AppleWebKit/532.9 (KHTML, like Gecko) Version/4.0.5 Mobile/8A293 Safari/6531.22.7</p>
+
+</blockquote>
+
+<p>curl可以这样模拟：</p>
+
+<blockquote>
+
+<p>　　$ curl --user-agent "[User Agent]" [URL]</p>
+
+</blockquote>
+
+<p><strong>十、cookie</strong></p>
+
+<p>使用`--cookie`参数，可以让curl发送cookie。</p>
+
+<blockquote>
+
+<p>　　$ curl --cookie "name=xxx" www.example.com</p>
+
+</blockquote>
+
+<p>至于具体的cookie的值，可以从http response头信息的`Set-Cookie`字段中得到。</p>
+
+<p>`-c cookie-file`可以保存服务器返回的cookie到文件，`-b cookie-file`可以使用这个文件作为cookie信息，进行后续的请求。</p>
+
+<blockquote>
+
+<p>　　$ curl -c cookies http://example.com<br />
+　　$ curl -b cookies http://example.com</p>
+
+</blockquote>
+
+<p><strong>十一、增加头信息</strong></p>
+
+<p>有时需要在http request之中，自行增加一个头信息。`--header`参数就可以起到这个作用。</p>
+
+<blockquote>
+
+<p>　　$ curl --header "Content-Type:application/json" http://example.com</p>
+
+</blockquote>
+
+<p><strong>十二、HTTP认证</strong></p>
+
+<p>有些网域需要HTTP认证，这时curl需要用到`--user`参数。</p>
+
+<blockquote>
+
+<p>　　$ curl --user name:password example.com</p>
+
+</blockquote>
+
+<p><strong>【参考资料】</strong></p>
+
+<p>　　* <a href="http://curl.haxx.se/docs/httpscripting.html">Using cURL to automate HTTP jobs</a></p>
+
+<p>　　* <a href="http://bbs.et8.net/bbs/showthread.php?t=568472">教你学用CURL</a></p>
+
+<p>　　* <a href="https://httpkit.com/resources/HTTP-from-the-Command-Line/">9 uses for cURL worth knowing</a></p>
+
+<p>（完）<br />
+ </p>
+                                    <!-- /div -->
+
+                                </div>
+    <script type="text/javascript" src="/newwindow.js"></script>
+                                <div class="asset-footer">
+
+<h3>文档信息</h3>
+<ul>
+<li>版权声明：自由转载-非商用-非衍生-保持署名（<a href="http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh">创意共享3.0许可证</a>）</li>
+<li>发表日期： <abbr class="published" title="2011-09-04T11:20:46+08:00">2011年9月 4日</abbr></li>
+<li>更多内容： <a href="http://www.ruanyifeng.com/blog/archives.html" target="_blank"> 档案</a>  » 
+<a href="http://www.ruanyifeng.com/blog/developer/"> 开发者手册</a> 
+</li>
+<li>购买文集：<a href="http://www.ruanyifeng.com/blog/2014/12/my-blog-book.html" target="_blank"><img src="data:image/png;base64,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" style="border:0;" /> 《如何变得有思想》</a></li>
+<li>社交媒体：<a href="https://twitter.com/ruanyf" target="_blank"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAk1JREFUeNqsVc9rE0EU/mZ3dhPNJl2bVIk/Km09aFBE8GLvnrwJXvwLxIsgCP4Fnit6E8Gb0IMHwUsL9SSNgiAoooJIpE1Joo1h82uT7IxvxmRN3Q32kAdvdrI773vfe+/bDTu9WioDcDAda3Ja8piepQ1avCkCeny0Y+R9KenKwOmHHLvPaKn7AtVOoO8dOWDCMpg+41gMQv5FNEJACgoE8MsPNLDBhgfoutMOsJDmWLmU037C4TApciljwQ/kHoohQxV06+wMXNvE7WINuaSpvdYVKLgWnl3O4zAxU3Z1IYVGT+B5qYWV9z2kbQaT/cOwTsxOUUYF+mB5Dkmi8HG3h2q9hxsFNwRTdvQgxxnXRrMvIdkEhllis/qtiWuLDm4WZnBlPoWnXz28LHdw0uGR7m9Wu3j0qYGEubfn4UlBfXO4gTZltRNMg9w9f0i7kNFxllsBlS0x75gYfxyWTBUjT2W5CSMSPBrQuG21+hiMDS8CeCzF8eSLp13uQ3Ab1IqMFZN8tFHPmgOBF99bYP8Be1Xp6t7OJszJgKpPSiZvaj7uf2hguz2IBQuozDvFH6RDBjuK9wdQDvt0nMpW+8efGyh5UcAeZb2+UcHbnz5Jx4wdlp4yJYU3kLiQtfBwOYeLc8nIwfXtNu69q2Oz4mMxbemYOOOjKarhvq51KUjg3GwiFPIuvcNF6pnSnWK0lOEabNLgQh1aJFAhlGB9rG110B2+oyRNPc0sZbRNFltmLKDKqj4Qrm1ojzOxDz2pyPQ0P7CK4c40/wJ+CzAAGYrXsvfFXR4AAAAASUVORK5CYII=" style="border:0;"> twitter</a>，<a href="http://weibo.com/ruanyf" target="_blank"><img src="data:image/png;base64,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" style="border:0;" /> weibo</a></li>
+<li>Feed订阅： <a href="/feed.html" target="_blank"><img src="data:image/gif;base64,R0lGODlhFAAUANU2APV1GfmrePZ8IeR5VPq2ieNkLf7p3NpFJveCJ/NoFfibVPR1IexiJfvdzuZrNfXGuOhUEueTevaFOfzIpNxDGeZZJNU6IOubifiVTfOnid1aLuZpLOFSJf/28vJtIvGcefaLSd5kNu9iFv/z6//48//t4uFfLfNkCeJNGuGNc/rCof/+/PVxEeldI/V5KeKMbu9nIvB2OvzQtNxMKfOPXP///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAADYALAAAAAAUABQAAAb/QJstEjKZCsjCZsl0pIS2QWXaYsA8noVWIEAgFoNhhWNyMESi7Jbr/aZCFdRnZJAFJCwAt+vlOkwtEBk1hDUkExJ6bQJaGyYMLTQTDSOFHQF8jAseSFYiJwkuAQ2FE1xaHjBIMDAgARguJwABJIQTLJswDEgeIgSEJQQILAqVNQEiui1HHgkBhTUGCiwYtR0xLS0VJhtaEgoEBoQkGCfPNSoQY9xaCwAsCBPALgmkJA4cZN0CAAgY/PJqEIDwgVAECjM0bOAnwcAKGQJclKhRgoGDDjUeUDigkN8vQiBOfByAglSDAxw3IBCgYEU0FyJoEPpA4UGNDjMsaHDQR8EdPVYOMmQYQGHAhQgHLIRIsWAlgASsGMRBMWMGBQtYZ7yIsoBRKkhjOMxAiXJGGCEpHGxIYsSIhrcaQmy1EQQAOw==" style="border:0;" /></a></li>
+
+</ul>
+                                </div>
+</article>
+                            </div>
+
+   <div id="gegz1">
+   <p style="text-align:center;"><a href="http://www.zhufengpeixun.cn/jscourse/new/js/index.html?ref=ruanyifeng.com" target="_blank"><img alt="珠峰培训" src="http://www.ruanyifeng.com/blog/images/sup_zhufeng_page.png" width="600" height="160" style="border:none;"/></a></p>
+   <p style="text-align:center;"><a href="https://h5.jianxun.io/20160321-qianlima?utm_source=event&utm_medium=blog_ad&utm_campaign=qianlima&utm_content=ruanyifeng&utm_term=wangzhan" target="_blank"><img alt="简寻" src="https://www.jianxun.io/ad/20151101/ruanyifeng-bottombanner.png" width="600" height="160" style="border:none;"/></a></p>
+   </div>
+
+<div id="related_entries">
+<h2>相关文章</h2>
+<ul>
+
+<li><strong>2016.03.08: <a href="http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-part-two.html">Systemd 入门教程：实战篇</a></strong>
+
+                           <div class="entry-body">
+                              上一篇文章，我介绍了 Systemd 的主要命令，今天介绍如何使用它完成一些基本的任务。
+
+                           </div>
+
+</li>
+
+ 
+<li><strong>2016.03.07: <a href="http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html">Systemd 入门教程：命令篇</a></strong>
+
+                           <div class="entry-body">
+                              Systemd 是 Linux 系统工具，用来启动守护进程，已成为大多数发行版的标准配置。
+
+                           </div>
+
+</li>
+
+ 
+<li><strong>2016.02.28: <a href="http://www.ruanyifeng.com/blog/2016/02/linux-daemon.html">Linux 守护进程的启动方法</a></strong>
+
+                           <div class="entry-body">
+                              "守护进程"（daemon）就是一直在后台运行的进程（daemon）。
+
+                           </div>
+
+</li>
+
+ 
+<li><strong>2016.01.06: <a href="http://www.ruanyifeng.com/blog/2016/01/commit_message_change_log.html">Commit message 和 Change log 编写指南</a></strong>
+
+                           <div class="entry-body">
+                              Git 每次提交代码，都要写 Commit message（提交说明），否则就不允许提交。
+
+                           </div>
+
+</li>
+
+ 
+</ul>
+</div>
+
+
+<div id="gd1">
+<h2>广告<a href="/support.html">（购买广告位）</a></h2>
+<div id="gd1-inner">
+<div id="gd1-left">
+<a href="http://a.maka.im/pcviewer/BA7L1P6B?utm_source=ruanyifeng.com" title="一灯学堂" target="_blank"><image alt="一灯学堂" src="http://www.ruanyifeng.com/blog/images/sup_yideng.png" style="border:none;" /></a>
+<br />
+<a href="http://www.zhinengshe.com/?utm_source=ruanyifeng.com" title="智能社" target="_blank"><image alt="智能社" src="http://www.ruanyifeng.com/blog/images/sup_zhinengshe.jpg" style="border:none;" /></a>
+</div>
+<div id="gd1-right">
+
+<a href="http://100offer.com/join/ruanyifeng?utm_source=ruanyifeng&utm_medium=dis&utm_campaign=ruanyifeng" target="_blank"><image src="http://www.ruanyifeng.com/blog/images/sup_1000ffer_2.jpg" style="border:none;" /></a><br />
+<a href="http://www.ruanyifeng.com/support.html" target="_blank"><image src="http://www.ruanyifeng.com/blog/images/sup_sale_s.png" style="border:none;" /></a>
+
+</div>
+</div>
+</div>
+                    
+
+                    <div id="comments" class="comments">
+
+
+    
+    
+        
+    <h2 class="comments-header">留言（36条）</h2>
+
+    <div id="comments-content" class="comments-content" style="clear: left;">
+        
+        <div id="comment-226856" class="comment">
+    <div  class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author">theone</span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-226856">
+            <p>刚刚刷新，就看见了，坐下来慢慢看</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="September  4, 2011 11:28 AM">2011年9月 4日 11:28</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2011/09/curl.html#comment-226856">#</a>
+ | <a href="#comment-text" title="引用theone的这条留言" onclick="return CommentQuote('comment-quote-226856','theone');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-226857" class="comment">
+    <div  class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author">stephansun</span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-226857">
+            <p>能有时间研究一些东西多好啊。可惜我等码农被项目的实现，bug修复，测试耗费的机会所有时间。悲。</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="September  4, 2011 11:35 AM">2011年9月 4日 11:35</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2011/09/curl.html#comment-226857">#</a>
+ | <a href="#comment-text" title="引用stephansun的这条留言" onclick="return CommentQuote('comment-quote-226857','stephansun');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-226858" class="comment">
+    <div  class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author"><a title="http://www.hitrustwood.com" href="http://www.hitrustwood.com" target="_blank" rel="nofollow">REN</a></span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-226858">
+            <p>能否请阮老师开辟一个针对初级用户的建站教程。我自己不懂代码和编程，但是通过运用网上的免费模板也在磕磕绊绊中建了2个网站。在建站过程中，遇到了很多初级问题，比如域名、空间、FTP等，由于身边没有这方面的专业人士，所以只有通过百度来一一解决。<br />
+昨天，我又想在网站的名字前面加个ICO标志，但是在百度上搜了很多都不理想。也就是说在IE浏览器可以显示ICO标志，但是在其他浏览器如搜狗浏览器就显示不出来了。</p>
+
+<p>我一直在关注您的博客，学到了很多很有用的知识。所以在这里发一个小小的请求，可能在专业人士看来这很粗浅，但对我等小民非常有帮助。</p>
+
+<p>可否把您在建站中用到的一些简单的技巧和方法分享一下呢，多谢！</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="September  4, 2011 12:21 PM">2011年9月 4日 12:21</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2011/09/curl.html#comment-226858">#</a>
+ | <a href="#comment-text" title="引用REN的这条留言" onclick="return CommentQuote('comment-quote-226858','REN');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-226859" class="comment">
+    <div  class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author">xx</span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-226859">
+            <blockquote>
+<pre>引用REN的发言：</pre>
+
+<p>昨天，我又想在网站的名字前面加个ICO标志，但是在百度上搜了很多都不理想。也就是说在IE浏览器可以显示ICO标志，但是在其他浏览器如搜狗浏览器就显示不出来了。</p>
+
+</blockquote>
+
+<p>favicon.ico   放在网站根目录就行了。</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="September  4, 2011  2:04 PM">2011年9月 4日 14:04</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2011/09/curl.html#comment-226859">#</a>
+ | <a href="#comment-text" title="引用xx的这条留言" onclick="return CommentQuote('comment-quote-226859','xx');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-226861" class="comment">
+    <div  class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author">REN</span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-226861">
+            <blockquote>
+<pre>引用xx的发言：</pre>
+
+<p></p>
+
+<p>favicon.ico 放在网站根目录就行了。</p>
+
+</blockquote>
+
+<p>我放在根目录了啊，但是也看不到哦。在IE里可以看到，但是在搜狗浏览器就看不到了。百度里能搜到的方法我都试了，还是不行。</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="September  4, 2011  2:24 PM">2011年9月 4日 14:24</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2011/09/curl.html#comment-226861">#</a>
+ | <a href="#comment-text" title="引用REN的这条留言" onclick="return CommentQuote('comment-quote-226861','REN');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-226873" class="comment">
+    <div  class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author"><a title="http://www.dovpc.com" href="http://www.dovpc.com" target="_blank" rel="nofollow">我爱pc</a></span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-226873">
+            <blockquote>
+<pre>引用REN的发言：</pre>
+
+<p>我放在根目录了啊，但是也看不到哦。在IE里可以看到，但是在搜狗浏览器就看不到了。百度里能搜到的方法我都试了，还是不行。<br />
+</p></blockquote>
+
+<p>清理临时文件，删除cookie试试</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="September  4, 2011  6:52 PM">2011年9月 4日 18:52</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2011/09/curl.html#comment-226873">#</a>
+ | <a href="#comment-text" title="引用我爱pc的这条留言" onclick="return CommentQuote('comment-quote-226873','我爱pc');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-226875" class="comment">
+    <div  class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author">Platinum</span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-226875">
+            <p>MV 也要截图放上来，curl 也要从 man 里摘一部分放上来，这经济学博士还是去应聘《电脑爱好者》当编辑吧</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="September  4, 2011  8:06 PM">2011年9月 4日 20:06</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2011/09/curl.html#comment-226875">#</a>
+ | <a href="#comment-text" title="引用Platinum的这条留言" onclick="return CommentQuote('comment-quote-226875','Platinum');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-226877" class="comment">
+    <div  class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author">xiakang</span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-226877">
+            <blockquote>
+<pre>引用REN的发言：</pre>
+
+<p>昨天，我又想在网站的名字前面加个ICO标志，但是在百度上搜了很多都不理想。</p>
+
+</blockquote>
+
+<p>还是不行？试试这里：http://zh.wikipedia.org/wiki/Favicon</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="September  4, 2011  9:03 PM">2011年9月 4日 21:03</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2011/09/curl.html#comment-226877">#</a>
+ | <a href="#comment-text" title="引用xiakang的这条留言" onclick="return CommentQuote('comment-quote-226877','xiakang');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-226881" class="comment">
+    <div  class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author">alang</span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-226881">
+            <blockquote>
+<pre>引用Platinum的发言：</pre>
+
+<p>MV 也要截图放上来，curl 也要从 man 里摘一部分放上来，这经济学博士还是去应聘《电脑爱好者》当编辑吧</p>
+
+</blockquote>
+别人是在做知识分享，很多人不知道这么高级的用法，您知道了，怎么不见您写出来啊？也用不着您在这里酸溜溜的拿人家世界经济学博士学位说事，感情您还不是博士呢。
+知识在于分享。您老是不永远不明白的。请走远些吧。
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="September  4, 2011  9:43 PM">2011年9月 4日 21:43</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2011/09/curl.html#comment-226881">#</a>
+ | <a href="#comment-text" title="引用alang的这条留言" onclick="return CommentQuote('comment-quote-226881','alang');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-226885" class="comment">
+    <div  class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author">麦克</span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-226885">
+            <p>博主的文章都很不错.值得一看.<br />
+请问有没用新浪微博来传播一下.<br />
+别说博主不屑这么做.我想博主还不至于这么清高吧.</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="September  4, 2011 10:50 PM">2011年9月 4日 22:50</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2011/09/curl.html#comment-226885">#</a>
+ | <a href="#comment-text" title="引用麦克的这条留言" onclick="return CommentQuote('comment-quote-226885','麦克');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-226908" class="comment">
+    <div  class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author">hourglass</span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-226908">
+            <p>感谢您的推荐。上次下载了dev c++编译的版本老是编译不成功，就扔在一边了。这次直接下exe了~</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="September  5, 2011  9:25 AM">2011年9月 5日 09:25</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2011/09/curl.html#comment-226908">#</a>
+ | <a href="#comment-text" title="引用hourglass的这条留言" onclick="return CommentQuote('comment-quote-226908','hourglass');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-226916" class="comment">
+    <div  class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author"><a title="http://qixinglu.com/" href="http://qixinglu.com/" target="_blank" rel="nofollow">muzuiget</a></span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-226916">
+            <p>> -I参数则是只显示http response的头信息。<br />
+严格说不是“只显示”，curl会发出HEAD请求而不是GET。</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="September  5, 2011 12:22 PM">2011年9月 5日 12:22</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2011/09/curl.html#comment-226916">#</a>
+ | <a href="#comment-text" title="引用muzuiget的这条留言" onclick="return CommentQuote('comment-quote-226916','muzuiget');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-227068" class="comment">
+    <div  class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author">imaole</span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-227068">
+            <p>head里面加入这个代码，然后把ico文件放入images目录下，你懂的<br />
+ </p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="September  6, 2011  8:58 AM">2011年9月 6日 08:58</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2011/09/curl.html#comment-227068">#</a>
+ | <a href="#comment-text" title="引用imaole的这条留言" onclick="return CommentQuote('comment-quote-227068','imaole');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-227120" class="comment">
+    <div  class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author">REN</span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-227120">
+            <p>各位朋友推荐的办法俺都试过了，可是还是老样子</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="September  6, 2011  9:08 PM">2011年9月 6日 21:08</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2011/09/curl.html#comment-227120">#</a>
+ | <a href="#comment-text" title="引用REN的这条留言" onclick="return CommentQuote('comment-quote-227120','REN');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-227227" class="comment">
+    <div  class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author"><a title="http://none" href="http://none" target="_blank" rel="nofollow">徐杰</a></span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-227227">
+            <blockquote>
+<pre>引用麦克的发言：</pre>
+
+<p>博主的文章都很不错.值得一看.<br />
+请问有没用新浪微博来传播一下.<br />
+别说博主不屑这么做.我想博主还不至于这么清高吧.</p>
+
+</blockquote>
+这不是清不清高的问题，而是个人自由的问题。
+
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="September  8, 2011  9:54 AM">2011年9月 8日 09:54</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2011/09/curl.html#comment-227227">#</a>
+ | <a href="#comment-text" title="引用徐杰的这条留言" onclick="return CommentQuote('comment-quote-227227','徐杰');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-227232" class="comment">
+    <div  class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author"><a title="http://www.ningyiqin.com" href="http://www.ningyiqin.com" target="_blank" rel="nofollow">antonio</a></span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-227232">
+            <p>favicon我也折腾了半天，在后台可以显示，但进入主页就硬是出不来，不知道怎么回事</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="September  8, 2011 11:11 AM">2011年9月 8日 11:11</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2011/09/curl.html#comment-227232">#</a>
+ | <a href="#comment-text" title="引用antonio的这条留言" onclick="return CommentQuote('comment-quote-227232','antonio');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-227240" class="comment">
+    <div  class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author"><a title="http://www.taidao.net/" href="http://www.taidao.net/" target="_blank" rel="nofollow">太道</a></span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-227240">
+            <p>php-curl这个库也不错，可以作为基础来实现php的多线程</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="September  8, 2011 11:39 AM">2011年9月 8日 11:39</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2011/09/curl.html#comment-227240">#</a>
+ | <a href="#comment-text" title="引用太道的这条留言" onclick="return CommentQuote('comment-quote-227240','太道');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-227321" class="comment">
+    <div  class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author">Andy</span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-227321">
+            <p>阮兄的文章越来越没有营养了，有点为了写博客而写博客的感觉，希望您能够沉下心来多分享点更有深度多文章</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="September  9, 2011 12:41 AM">2011年9月 9日 00:41</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2011/09/curl.html#comment-227321">#</a>
+ | <a href="#comment-text" title="引用Andy的这条留言" onclick="return CommentQuote('comment-quote-227321','Andy');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-227876" class="comment">
+    <div  class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author">flywhale</span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-227876">
+            <blockquote>
+<pre>引用Andy的发言：</pre>
+
+<p>阮兄的文章越来越没有营养了，有点为了写博客而写博客的感觉，希望您能够沉下心来多分享点更有深度多文章</p>
+
+</blockquote>
+
+<p>我看是大家太浮躁了吧，这文章怎么就没有营养了？这些选项你都使用过吗？我是没有都用过。我觉得很有意思。</p>
+
+<p>你想要什么“营养”呢？</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="September 14, 2011  1:28 AM">2011年9月14日 01:28</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2011/09/curl.html#comment-227876">#</a>
+ | <a href="#comment-text" title="引用flywhale的这条留言" onclick="return CommentQuote('comment-quote-227876','flywhale');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-229217" class="comment">
+    <div  class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author">cc</span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-229217">
+            <p>我只看到了一群酸溜溜的人，从小白慢慢成长为老鸟后，表现出的对前辈分享基础知识时的各种不屑。</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="September 21, 2011  6:18 PM">2011年9月21日 18:18</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2011/09/curl.html#comment-229217">#</a>
+ | <a href="#comment-text" title="引用cc的这条留言" onclick="return CommentQuote('comment-quote-229217','cc');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-254363" class="comment">
+    <div  class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author">Vaporz</span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-254363">
+            <blockquote>
+<pre>引用cc的发言：</pre>
+
+<p>我只看到了一群酸溜溜的人，从小白慢慢成长为老鸟后，表现出的对前辈分享基础知识时的各种不屑。</p>
+
+</blockquote>
+
+<p>嗯，不能同意你更多（can't agree you more）</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="May  9, 2012  3:30 PM">2012年5月 9日 15:30</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2011/09/curl.html#comment-254363">#</a>
+ | <a href="#comment-text" title="引用Vaporz的这条留言" onclick="return CommentQuote('comment-quote-254363','Vaporz');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-258347" class="comment">
+    <div  class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author"><a title="http://linjian.me" href="http://linjian.me" target="_blank" rel="nofollow">子风</a></span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-258347">
+            <p>写的非常好.<br />
+我还是试着用过telnet模拟这些过程, 比curl还有意思.</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="July  9, 2012 10:46 AM">2012年7月 9日 10:46</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2011/09/curl.html#comment-258347">#</a>
+ | <a href="#comment-text" title="引用子风的这条留言" onclick="return CommentQuote('comment-quote-258347','子风');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-259127" class="comment">
+    <div  class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author">alex</span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-259127">
+            <p>喜欢这种简要的文章，就像给某方面的知识做index，在某些可能用到的场合能很快记起来<br />
+如果要了解详尽点，也可以通过参考文献过去</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="July 21, 2012  5:44 PM">2012年7月21日 17:44</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2011/09/curl.html#comment-259127">#</a>
+ | <a href="#comment-text" title="引用alex的这条留言" onclick="return CommentQuote('comment-quote-259127','alex');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-259130" class="comment">
+    <div  class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author">alex</span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-259130">
+            <p>从行文排版也能窥得阮兄的代码风格哦，赞啊</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="July 21, 2012  5:48 PM">2012年7月21日 17:48</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2011/09/curl.html#comment-259130">#</a>
+ | <a href="#comment-text" title="引用alex的这条留言" onclick="return CommentQuote('comment-quote-259130','alex');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-264810" class="comment">
+    <div  class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author">keke</span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-264810">
+            <p>请问老师，我怎么用Curl访问https的网站呢？谢谢。。。</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="October 12, 2012  9:58 AM">2012年10月12日 09:58</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2011/09/curl.html#comment-264810">#</a>
+ | <a href="#comment-text" title="引用keke的这条留言" onclick="return CommentQuote('comment-quote-264810','keke');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-265205" class="comment">
+    <div  class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author"><a title="http://liyingqing.com" href="http://liyingqing.com" target="_blank" rel="nofollow">李应青那点事</a></span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-265205">
+            <p>这个比较实用，不过curl不是什么时候都好用的！</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="October 22, 2012  4:50 PM">2012年10月22日 16:50</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2011/09/curl.html#comment-265205">#</a>
+ | <a href="#comment-text" title="引用李应青那点事的这条留言" onclick="return CommentQuote('comment-quote-265205','李应青那点事');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-267919" class="comment">
+    <div  class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author">wood</span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-267919">
+            <p>曾认为，有wget，何必curl。这时候看来，cURL真的有必要</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="January 16, 2013 11:22 AM">2013年1月16日 11:22</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2011/09/curl.html#comment-267919">#</a>
+ | <a href="#comment-text" title="引用wood的这条留言" onclick="return CommentQuote('comment-quote-267919','wood');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-267920" class="comment">
+    <div  class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author"><a title="http://demi-panda.com" href="http://demi-panda.com" target="_blank" rel="nofollow">熊猫家族</a></span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-267920">
+            <p>CURL是Linux下很强大的工具，跟wget不本质一样的</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="January 16, 2013 11:30 AM">2013年1月16日 11:30</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2011/09/curl.html#comment-267920">#</a>
+ | <a href="#comment-text" title="引用熊猫家族的这条留言" onclick="return CommentQuote('comment-quote-267920','熊猫家族');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-270502" class="comment">
+    <div  class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author"><a title="http://chaoskeh.com" href="http://chaoskeh.com" target="_blank" rel="nofollow">Chaos</a></span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-270502">
+            <blockquote>
+<pre>引用antonio的发言：</pre>
+
+<p>favicon我也折腾了半天，在后台可以显示，但进入主页就硬是出不来，不知道怎么回事</p>
+
+</blockquote>
+
+<p>favicon显示不出来可能是因为 MIME TYPE 的问题，可以设置一下.ico的 MIME TYPE</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="April  8, 2013 10:55 AM">2013年4月 8日 10:55</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2011/09/curl.html#comment-270502">#</a>
+ | <a href="#comment-text" title="引用Chaos的这条留言" onclick="return CommentQuote('comment-quote-270502','Chaos');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-270922" class="comment">
+    <div  class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author"><a title="http://www.chengxuyuans.com" href="http://www.chengxuyuans.com" target="_blank" rel="nofollow">橘子</a></span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-270922">
+            <blockquote>
+<pre>引用keke的发言：</pre>
+
+<p>请问老师，我怎么用Curl访问https的网站呢？谢谢。。。</p>
+
+</blockquote>
+我也想知道看看这个网站的api就是这样
+<a href="https://stipple.com/api_docs/v1#users" rel="nofollow">https://stipple.com/api_docs/v1#users</a>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="April 22, 2013  3:51 PM">2013年4月22日 15:51</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2011/09/curl.html#comment-270922">#</a>
+ | <a href="#comment-text" title="引用橘子的这条留言" onclick="return CommentQuote('comment-quote-270922','橘子');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-271298" class="comment">
+    <div  class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author"><a title="http://blog.ros-lab.com" href="http://blog.ros-lab.com" target="_blank" rel="nofollow">SR1</a></span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-271298">
+            <p>原来curl是这么有用的工具<br />
+一直在Window下都没用过<br />
+还好装了Git的Bash，试用了一下超级好用</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="May  5, 2013  3:09 AM">2013年5月 5日 03:09</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2011/09/curl.html#comment-271298">#</a>
+ | <a href="#comment-text" title="引用SR1的这条留言" onclick="return CommentQuote('comment-quote-271298','SR1');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-289427" class="comment">
+    <div  class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author"><a title="http://lynnelv.github.com/" href="http://lynnelv.github.com/" target="_blank" rel="nofollow">lynnelv</a></span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-289427">
+            <blockquote>
+<pre>引用Chaos的发言：</pre>
+
+<p>favicon显示不出来可能是因为 MIME TYPE 的问题，可以设置一下.ico的 MIME TYPE</p>
+
+</blockquote>
+
+<p>favicon.ico这个图片得是16*16像素，否则在IE下显示不出来</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="November 27, 2013 10:46 AM">2013年11月27日 10:46</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2011/09/curl.html#comment-289427">#</a>
+ | <a href="#comment-text" title="引用lynnelv的这条留言" onclick="return CommentQuote('comment-quote-289427','lynnelv');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-349467" class="comment">
+    <div  class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author"><a title="http://cholerae.com" href="http://cholerae.com" target="_blank" rel="nofollow">cholerae</a></span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-349467">
+            <p>好文章，感谢阮老师分享</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="May  6, 2015  6:15 PM">2015年5月 6日 18:15</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2011/09/curl.html#comment-349467">#</a>
+ | <a href="#comment-text" title="引用cholerae的这条留言" onclick="return CommentQuote('comment-quote-349467','cholerae');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-349661" class="comment">
+    <div  class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author">jamesdcl</span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-349661">
+            <p>感谢阮老师， 正在寻找curl教程</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="May 14, 2015  5:51 PM">2015年5月14日 17:51</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2011/09/curl.html#comment-349661">#</a>
+ | <a href="#comment-text" title="引用jamesdcl的这条留言" onclick="return CommentQuote('comment-quote-349661','jamesdcl');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-351920" class="comment">
+    <div  class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author"><a title="https://itbdw.com" href="https://itbdw.com" target="_blank" rel="nofollow">IT不倒翁</a></span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-351920">
+            <blockquote>
+<pre>引用Platinum的发言：</pre>
+
+<p>MV 也要截图放上来，curl 也要从 man 里摘一部分放上来，这经济学博士还是去应聘《电脑爱好者》当编辑吧</p>
+
+</blockquote>
+
+<p>说这话是什么心态。。。</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="September 29, 2015  3:36 PM">2015年9月29日 15:36</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2011/09/curl.html#comment-351920">#</a>
+ | <a href="#comment-text" title="引用IT不倒翁的这条留言" onclick="return CommentQuote('comment-quote-351920','IT不倒翁');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-354915" class="comment">
+    <div id="comment-last" class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author"><a title="http://www.xiangkaiy.cn" href="http://www.xiangkaiy.cn" target="_blank" rel="nofollow">xiangkai</a></span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-354915">
+            <p>简单明了 阮老师一贯的风格，赞～</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="March 11, 2016  2:36 PM">2016年3月11日 14:36</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2011/09/curl.html#comment-354915">#</a>
+ | <a href="#comment-text" title="引用xiangkai的这条留言" onclick="return CommentQuote('comment-quote-354915','xiangkai');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    </div>
+        
+    
+
+
+    
+    
+    <div class="comments-open" id="comments-open">
+        <h2 class="comments-open-header">我要发表看法</h2>
+        <div class="comments-open-content">
+
+        
+            <div id="comment-greeting"></div>
+
+            <form method="post" action="http://www.ruanyifeng.com/cgi-bin/mtos/mt-comments.cgi" name="comments_form" id="comments-form" onsubmit="return pleaseWait();">
+                <input type="hidden" name="static" value="1" />
+                <input type="hidden" name="entry_id" value="1673" />
+                <input type="hidden" name="__lang" value="en" />
+                <input type="hidden" name="parent_id" value="" id="comment-parent-id" />
+                <input type="hidden" name="armor" value="1" />
+                <input type="hidden" name="preview" value="" />
+                <input type="hidden" name="sid" value="" />
+                <div id="comments-open-data">
+            <div id="comments-open-text">
+                    <p><label for="comment-text">您的留言
+                    （HTML标签部分可用）</label></p>
+                    <p><textarea id="comment-text" name="text" rows="10" cols="50"></textarea></p>
+                </div>
+                    <div id="comment-form-name">
+                        <p><label for="comment-author">您的大名：</label></p>
+                        <p><input id="comment-author" name="author" size="30" value="" />  <span class="hint"> &laquo;-必填</span></p>
+                    </div>
+                    <div id="comment-form-email">
+                        <p><label for="comment-email">电子邮件：</label></p>
+                        <p><input id="comment-email" name="email" size="30" value="" />  <span class="hint"> &laquo;-必填，不公开</span></p>
+                    </div>
+                    <div id="comment-form-url">
+                        <p><label for="comment-url">个人网址：</label></p>
+                        <p><input id="comment-url" name="url" size="30" value="" />  <span class="hint"> &laquo;-我信任你，不会填写广告链接</span></p>
+                    </div>
+                    <div id="comment-form-remember-me">
+                        <p>
+                        <label for="comment-bake-cookie">记住个人信息？</label><input type="checkbox" id="comment-bake-cookie" name="bakecookie" onclick="!this.checked?forgetMe(document.comments_form):rememberMe(document.comments_form)" value="1" accesskey="r" /></p>
+                    </div>
+                </div>
+                    <div id="comment-form-reply" style="display:none">
+                    <input type="checkbox" id="comment-reply" name="comment_reply" value="" onclick="mtSetCommentParentID()" />
+                    <label for="comment-reply" id="comment-reply-label"></label>
+                </div>
+                <div id="comments-open-captcha"></div>
+                <div id="comments-open-footer">
+<div id="wait" style="display:none;">
+<p><strong>正在发表您的评论，请稍候</strong></p>
+<p>
+<input type="text" name="percent" size="3" style="font-family:Arial; color:black;text-align:center; border-width:medium; border-style:none;">           
+<input type="text" name="chart" size="46" style="font-family:Arial;font-weight:bolder; color:black; padding:0px; border-style:none;">
+</p>
+</div>
+
+                    <p><input type="submit" accesskey="s" name="post" id="comment-submit" value="发表" />  <span class="hint"> &laquo;- 点击按钮</span></p>
+                </div>
+            </form>
+
+
+        </div>
+    </div>
+
+    
+
+
+</div>
+
+
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        <script type="text/javascript" src="http://www.ruanyifeng.com/blog/js/prism.js"></script>
+
+            <div id="footer">
+    <div id="footer-inner">
+        <div id="footer-content">
+<p><a href="/contact.html">联系方式</a> | ruanyifeng.com 2003 - 2016
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-46829782-1', 'ruanyifeng.com');
+  ga('send', 'pageview');
+
+</script>
+
+
+
+<!-- Site Meter -->
+<a href="http://sm3.sitemeter.com/stats.asp?site=sm3bomoocom" target="_top">
+<img src="http://sm3.sitemeter.com/meter.asp?site=sm3bomoocom" alt="Site Meter" border="0"/></a>
+
+<!-- Copyright (c)2009 Site Meter -->
+
+</p>
+
+        </div>
+    </div>
+</div>
+
+
+<div id="share_button_proto" style="display:none;">
+<a class="bshareDiv" href="http://www.bshare.cn/share">分享按钮</a>
+
+
+
+<script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#uuid=15e016b4-0028-44f1-a40d-a3c9d9c13c28&style=10&bgcolor=#fff&bp=facebook,twitter,sinaminiblog,weixin,gplus,qqmb,qzone,douban,qqim,fanfou,instapaper,xueqiu&ssc=false"></script>
+<script type="text/javascript" charset="utf-8">
+bShare.addEntry({
+    title: document.getElementById("page-title").innerHTML,
+url:window.location.href
+});
+</script>
+</div>
+
+<script>
+document.getElementById("share_button").innerHTML=document.getElementById("share_button_proto").innerHTML;
+</script>
+
+
+
+
+        </div>
+    </div>
+</body>
+</html>
