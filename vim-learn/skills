@@ -1,2 +1,5 @@
 g 配合command使用
 :g/re/normal
+:redi[r][!] > {file}	Redirect messages to file {file}
+可以把命令行的输出重定向到寄存器
+如redir @a
