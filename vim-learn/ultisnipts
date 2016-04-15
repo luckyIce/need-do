@@ -4,7 +4,8 @@
 The start line takes the following form: 
    snippet tab_trigger [ "description" [ options ] ]
    options:
-      i －inword
+      A - Snippet will be triggered automatically, when condition matches.
+      i -inword
       example
         snippet .find "find_first_of" i
         .find_first_of("${1}");
