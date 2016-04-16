@@ -1,0 +1,2 @@
+A function parameter is a variable used in a function where the value is provided by the caller of the function. Function parameters are placed in between the parenthesis after the function identifier, with multiple parameters being separated by commas.
+An argument is a value that is passed from the caller to the function when a function call is made
