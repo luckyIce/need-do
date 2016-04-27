@@ -1,0 +1,2 @@
+设置git命令的别名
+git config --global alias.ci commit
