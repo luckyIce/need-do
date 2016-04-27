@@ -1,0 +1,3 @@
+emmet
+    缩写:p>{Click}+span{here}+{to continue}
+    <p>Click<span>here</span>to continue</p>
