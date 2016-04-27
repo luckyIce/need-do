@@ -1,2 +1,7 @@
 设置git命令的别名
 git config --global alias.ci commit
+git reset命令
+把当前分支指向另一个位置，并且有选择的变动工作目录和索引
+git reset --hard <commit>,替换引用的指向，替换暂存区，替换工作区
+git reset --soft <commit>,只更改引用的指向，不改变暂存区和工作区
+git reset,用HEAD指向的目录树重置暂存区 
