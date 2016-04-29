@@ -11,3 +11,9 @@
         zm              Fold more: Subtract v:count1 from 'foldlevel'.  If 'foldlevel' was
                 already zero nothing happens.
         zr              Reduce folding: Add v:count1 to 'foldlevel'.
+Jumping to a mark can be done in two ways:
+1. With ` (backtick):	  The cursor is positioned at the specified location
+			  and the motion is |exclusive|.
+2. With ' (single quote): The cursor is positioned on the first non-blank
+			  character in the line of the specified location and
+			  the motion is linewise.
