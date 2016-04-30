@@ -1,2 +1,8 @@
 Expose Tabs Option+Command+E
 自动完成输入打头几个字母，然后输入command+; iterm2将自动列出之前输入过的类似命令。                 
+command+f命令
+打开搜索命令
+command+g命令
+查找下一处
+command+shift+g命令
+查找上一处
