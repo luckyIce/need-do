@@ -6,3 +6,6 @@ command+g命令
 查找下一处
 command+shift+g命令
 查找上一处
+Save Mark/Jump to Mark
+
+You can mark a location in a session with cmd-shift-M and then jump back to it with cmd-shift-J. This is useful, for instance, if you suspend your editor to compile a program and it emits errors. You can save a mark at that point and then return to your editor to fix the errors. As you work, you can jump back to the compilation errors with cmd-shift-J.
